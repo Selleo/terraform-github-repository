@@ -15,5 +15,5 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_token"></a> [token](#input\_token) | n/a | `any` | n/a | yes |
+| <a name="input_token"></a> [token](#input\_token) | Personal access token | `string` | n/a | yes |
 <!-- END_TF_DOCS -->
