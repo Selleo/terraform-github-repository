@@ -6,7 +6,3 @@ terraform {
     }
   }
 }
-provider "github" {
-  token = var.token
-  organization = var.org
-}

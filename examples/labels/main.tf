@@ -3,7 +3,7 @@ module "mymodule" {
 
   issue_labels = {
     "on hold" = "ff0000"
-    bug = "ff00ff"
+    bug       = "ff00ff"
   }
 
   repo = "Selleo/terraform-github-repository"
