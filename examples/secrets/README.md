@@ -9,7 +9,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_mymodule"></a> [mymodule](#module\_mymodule) | ../../modules/environment | n/a |
+| <a name="module_mymodule"></a> [mymodule](#module\_mymodule) | ../../modules/secrets | n/a |
 
 ## Inputs
 
