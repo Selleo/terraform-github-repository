@@ -3,9 +3,10 @@ data "github_repository" "this" {
 }
 
 resource "github_actions_environment_secret" "this" {
+  for_each        = var.secrets
+  
   repository      = data.github_repository.this.name
   environment     = var.env
-  for_each        = var.secrets
   secret_name     = each.key
   encrypted_value = base64encode(each.value)
 }

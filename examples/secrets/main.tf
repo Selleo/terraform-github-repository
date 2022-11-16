@@ -1,6 +1,6 @@
 module "mymodule" {
 
-  source = "../../modules/environment"
+  source = "../../modules/secrets"
   repo   = "Selleo/devops-kacper"
   env    = "testowe"
 

@@ -1,7 +1,7 @@
 module "mymodule" {
   source = "../../modules/labels"
 
-  issue_labels = {
+  labels = {
     "on hold" = "ff0000"
     bug       = "ff00ff"
   }
