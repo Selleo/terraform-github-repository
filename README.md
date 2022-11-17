@@ -1,6 +1,8 @@
-# Terraform RENAME_ME module
+# Terraform GitHub module
 
-TODO
+List of submodules:
+- [labels](./modules/labels) - allows to manage GitHub issue labels 
+- [secrets](./modules/secrets) - allows to manage secrets for environments in repository
 
 <!-- BEGIN_TF_DOCS -->
 
