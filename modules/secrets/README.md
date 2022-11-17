@@ -24,5 +24,5 @@
 |------|-------------|------|---------|:--------:|
 | <a name="input_env"></a> [env](#input\_env) | Environment name | `string` | n/a | yes |
 | <a name="input_repo"></a> [repo](#input\_repo) | Full name of repo: organization/repository | `string` | n/a | yes |
-| <a name="input_secrets"></a> [secrets](#input\_secrets) | The map of secrets | `map` | n/a | yes |
+| <a name="input_secrets"></a> [secrets](#input\_secrets) | The map of secrets | `map(string)` | n/a | yes |
 <!-- END_TF_DOCS -->

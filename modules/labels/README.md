@@ -22,6 +22,6 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_labels"></a> [labels](#input\_labels) | Map of issue labels: name = color | `map` | n/a | yes |
+| <a name="input_labels"></a> [labels](#input\_labels) | Map of issue labels: name = color | `map(string)` | n/a | yes |
 | <a name="input_repo"></a> [repo](#input\_repo) | Full name of repo: organization/repository | `string` | n/a | yes |
 <!-- END_TF_DOCS -->
