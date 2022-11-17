@@ -1,8 +1,8 @@
 # Terraform GitHub module
 
 List of submodules:
-- [labels](./modules/labels) - allows to manage GitHub issue labels 
-- [secrets](./modules/secrets) - allows to manage secrets for environments in repository
+- [labels](https://github.com/Selleo/terraform-github-repository/tree/main/modules/labels) - allows to manage GitHub issue labels 
+- [secrets](https://github.com/Selleo/terraform-github-repository/tree/main/modules/secrets) - allows to manage secrets for environments in repository
 
 <!-- BEGIN_TF_DOCS -->
 
