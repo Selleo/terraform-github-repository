@@ -1,7 +1,7 @@
 variable "labels" {
   description = "Map of issue labels: name = color"
 
-  type = map
+  type = map(string)
 }
 variable "repo" {
   description = "Full name of repo: organization/repository"

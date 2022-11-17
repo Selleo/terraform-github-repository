@@ -7,7 +7,7 @@ variable "repo" {
 variable "secrets" {
   description = "The map of secrets"
 
-  type = map
+  type = map(string)
 }
 
 variable "env" {
