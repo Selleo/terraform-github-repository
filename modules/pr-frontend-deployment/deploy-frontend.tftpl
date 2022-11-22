@@ -1,0 +1,54 @@
+name: ${name}
+
+on:
+  push:
+    branches:
+      %{ for branch in branches }
+      - ${branch}
+      %{ endfor }  
+    paths:
+      - ${work_dir}/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      %{ if "${url}" != "" }
+      url: "${url}"
+      %{ endif }
+    defaults:
+      run:
+        working-directory: ./${work_dir}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm ci
+      - name: Build app
+        run: npm run build
+        env:
+          %{ for secret in secrets }
+          ${secret}: $${{ secrets.${secret}}}
+          %{ endfor } 
+      - name: Synchronize S3 Bucket
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: $${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: $${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: $${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: $${{ secrets.AWS_REGION }}
+          SOURCE_DIR: "${work_dir}/build"
+          DEST_DIR: $${{ secrets.AWS_S3_BUCKET_PATH }}
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: $${{ secrets.AWS_CDN_ID }}
+          PATHS: "/*"
+          AWS_REGION: "us-east-1"
+          AWS_ACCESS_KEY_ID: $${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: $${{ secrets.AWS_SECRET_ACCESS_KEY }}
