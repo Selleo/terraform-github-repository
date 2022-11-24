@@ -15,7 +15,7 @@ resource "github_repository_pull_request" "this" {
   base_repository = data.github_repository.this.name
   base_ref        = "main"
   head_ref        = local.branch
-  title           = "PR-${random_id.this.hex}"
+  title           = "Auto generated: Add GitHub action - ${var.name}"
   body            = "Auto generated: Add frontend deployment"
 
   depends_on = [
