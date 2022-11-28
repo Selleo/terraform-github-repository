@@ -10,7 +10,7 @@ variable "env" {
 
 variable "node_version" {
   type = string
-  description =` "Version of node"
+  description = "Version of node"
 }
 
 variable "name" {
