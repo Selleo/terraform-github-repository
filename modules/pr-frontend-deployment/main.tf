@@ -34,7 +34,7 @@ resource "github_repository_file" "this" {
     branches     = var.branches
     work_dir     = var.work_dir
     secrets      = var.secrets
-    environment  = var.env
+    env          = var.env
     node_version = var.node_version
   })
   overwrite_on_create = true
