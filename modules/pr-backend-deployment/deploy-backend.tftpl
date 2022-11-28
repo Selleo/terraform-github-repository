@@ -3,9 +3,8 @@ name: ${name}
 on:
   push:
     branches:
-       %{ for branch in branches }
-      - ${branch}
-      %{ endfor }  
+      %{for branch in branches}- ${branch}
+      {endfor}  
     paths:
       - ${work_dir}/**
 
@@ -43,7 +42,7 @@ jobs:
         uses: jaxxstorm/action-install-gh-release@v1.5.0
         with: 
           repo: selleo/cli
-          tag: ${tag}
+          tag: ${cli_version}
         env:
           GITHUB_TOKEN: $${{ secrets.GITHUB_TOKEN }}
       - name: ECS Deployment

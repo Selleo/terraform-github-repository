@@ -1,5 +1,12 @@
 locals {
   branch = "terraform-backend-deployment-${random_id.this.hex}"
+  tag    = var.cli_version != "" ? var.cli_version : data.github_release.this.release_tag
+}
+
+data "github_release" "this" {
+  repository  = "cli"
+  owner       = "Selleo"
+  retrieve_by = "latest"
 }
 
 data "github_repository" "this" {
@@ -33,9 +40,8 @@ resource "github_repository_file" "this" {
     url         = var.url
     branches    = var.branches
     work_dir    = var.work_dir
-    secrets     = var.secrets
     env         = var.env
-    cli_version = var.cli_version
+    cli_version = local.tag
   })
   overwrite_on_create = true
 
@@ -47,3 +53,4 @@ resource "github_repository_file" "this" {
 resource "random_id" "this" {
   byte_length = 2
 }
+
