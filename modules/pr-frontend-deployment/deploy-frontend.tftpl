@@ -3,9 +3,8 @@ name: ${name}
 on:
   push:
     branches:
-      %{ for branch in branches }
-      - ${branch}
-      %{ endfor }  
+      %{for branch in branches}- ${branch}
+      %{endfor}  
     paths:
       - ${work_dir}/**
 
@@ -30,9 +29,8 @@ jobs:
       - name: Build app
         run: npm run build
         env:
-          %{ for secret in secrets }
-          ${secret}: $${{ secrets.${secret}}}
-          %{ endfor } 
+          %{for secret in secrets}${secret}: $${{ secrets.${secret}}}
+          %{endfor} 
       - name: Synchronize S3 Bucket
         uses: jakejarvis/s3-sync-action@master
         with:

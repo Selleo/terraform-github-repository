@@ -1,5 +1,12 @@
 locals {
-  branch = "terraform-frontend-deployment-${random_id.this.hex}"
+  branch = "terraform-backend-deployment-${random_id.this.hex}"
+  tag    = var.cli_version != "" ? var.cli_version : data.github_release.this.release_tag
+}
+
+data "github_release" "this" {
+  repository  = "cli"
+  owner       = "Selleo"
+  retrieve_by = "latest"
 }
 
 data "github_repository" "this" {
@@ -16,7 +23,7 @@ resource "github_repository_pull_request" "this" {
   base_ref        = "main"
   head_ref        = local.branch
   title           = "Auto generated: Add GitHub action - ${var.name}"
-  body            = "Auto generated: Add frontend deployment"
+  body            = "Auto generated: Add backend deployment"
 
   depends_on = [
     github_branch.this,
@@ -27,19 +34,23 @@ resource "github_repository_pull_request" "this" {
 resource "github_repository_file" "this" {
   repository = data.github_repository.this.name
   branch     = local.branch
-  file       = ".github/workflows/deploy-frontend.yml"
-  content = templatefile("${path.module}/deploy-frontend.tftpl", {
-    name         = var.name
-    url          = var.url
-    branches     = var.branches
-    work_dir     = var.work_dir
-    secrets      = var.secrets
-    env          = var.env
-    node_version = var.node_version
+  file       = ".github/workflows/deploy-backend.yml"
+  content = templatefile("${path.module}/deploy-backend.tftpl", {
+    name        = var.name
+    url         = var.url
+    branches    = var.branches
+    work_dir    = var.work_dir
+    env         = var.env
+    cli_version = local.tag
   })
   overwrite_on_create = true
+
+  depends_on = [
+    github_branch.this
+  ]
 }
 
 resource "random_id" "this" {
   byte_length = 2
 }
+

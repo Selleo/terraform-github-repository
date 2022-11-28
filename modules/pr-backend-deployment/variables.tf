@@ -4,41 +4,37 @@ variable "repo" {
 }
 
 variable "env" {
-  type = string
+  type        = string
   description = "Name of you environment to use secrets from"
 }
 
-variable "node_version" {
-  type = string
-  description = "Version of node"
+variable "cli_version" {
+  default     = ""
+  type        = string
+  description = "Release tag of https://github.com/Selleo/cli"
 }
 
 variable "name" {
-  default = "Deploy frontend"
+  default     = "Deploy backend"
   type        = string
   description = "Name of the github action"
 }
 
 variable "url" {
-  default = ""
+  default     = ""
   type        = string
   description = "Your app url"
 }
 
 variable "branches" {
-  default = ["main"]
+  default     = ["main"]
   type        = list(string)
   description = "List of branches that trigger GitHub action"
 }
 
 variable "work_dir" {
-  default = ""
+  default     = ""
   type        = string
-  description = "Path trigger and project root (deployment will happen from `work_dir/build"
+  description = "Path trigger and project root"
 }
 
-variable "secrets" {
-  default = []
-  type        = list(string)
-  description = "List of secrets to use from environment"
-}
